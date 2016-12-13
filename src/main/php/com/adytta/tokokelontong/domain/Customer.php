@@ -4,17 +4,19 @@ namespace com\adytta\tokokelontong\domain;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
-* @Entity 
-* @Table (name = "customer", uniqueConstraints={@UniqueConstraint(name="search_idx_customer", columns={"name", "email"})}) 
+* @Entity (repositoryClass="com\adytta\tokokelontong\repositories\CustomerRepository")
+* @Table (name = "customer", 
+*         uniqueConstraints={@UniqueConstraint(name="search_idx_customer", columns={"name", "email"})}) 
 */
 class Customer {
   
   /** @Id @Column(type="integer") @GeneratedValue */
   protected $id;
-   /** @Column(type="string") */
+   /** @Column(name="name", type="string") */
   protected $name;
 
-  /** @Column(type="string") */
+  
+  /** @Column(name="email", type="string") */
   protected $email;
 
   /**

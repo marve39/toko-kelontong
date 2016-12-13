@@ -1,6 +1,7 @@
 <?php
 
 namespace com\adytta\tokokelontong\domain;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
 * @Entity 
@@ -11,7 +12,9 @@ class CheckoutCart {
   /** @Id @Column(type="integer") @GeneratedValue */
   protected $id;
   
-  /** @OneToOne(targetEntity="Product") */
+  /** @ManyToOne(targetEntity="Product") 
+  *   @JoinColumn(name="product_id", referencedColumnName="id", unique=false)
+  */
   protected $product;
 
   /** @Column(type="integer") */
@@ -24,12 +27,16 @@ class CheckoutCart {
   /** @ManyToOne(targetEntity="SalesOrder", inversedBy="cart", fetch="EXTRA_LAZY") */
   protected $salesOrder;
 
-  public function getId(){
-    return $this->id;
+  public function __construct($product,$qty) {
+        $this->cart = new ArrayCollection();
+        $this->product = $product;
+        $this->qty = $qty;
+        $this->basePrice = $product->getPrice();
+        $this->totalPrice = $this->basePrice * $this->qty;
   }
 
-  public function setProduct($product){
-    $this->product = $product;
+  public function getId(){
+    return $this->id;
   }
 
   public function getProduct(){
@@ -52,17 +59,10 @@ class CheckoutCart {
     return $this->basePrice;
   }
 
-  public function setBasePrice($basePrice){
-    $this->basePrice = $basePrice;
-  }
-
   public function getTotalPrice(){
     return $this->totalPrice;
   }
 
-  public function setTotalPrice($totalPrice){
-    $this->totalPrice = $totalPrice;
-  }
 }
 
 ?>

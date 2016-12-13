@@ -17,4 +17,4 @@ $entityManager = \Doctrine\ORM\EntityManager::create($conn, $config);
 // Buat Table berdasarkan metadata
 $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($entityManager);
 $classes = $entityManager->getMetadataFactory()->getAllMetadata();
-$schemaTool->createSchema($classes);
+//$schemaTool->updateSchema($classes);

@@ -1,6 +1,7 @@
 <?php
 
 namespace com\adytta\tokokelontong\domain;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
 * @Entity 
@@ -10,10 +11,17 @@ class Payment{
     /** @Id @Column(type="integer") @GeneratedValue */
     protected $id;
 
-    /** @OneToOne(targetEntity="SalesOrder", inversedBy="payment") */
+    /** @OneToOne(targetEntity="SalesOrder", mappedBy="payment") */
     protected $salesOrder;
+    /** @Column(type="bigint") */
     protected $billAmount;
+    /** @Column(type="string") */
     protected $bank;
+
+    public function __construct($billAmount) {
+        $this->cart = new ArrayCollection();
+        $this->billAmount = $billAmount;
+  }
 
     public function getId(){
         return $this->Id;
@@ -36,7 +44,7 @@ class Payment{
     }
 
     public function setBank($bank){
-        $this->bank($bank);
+        $this->bank = $bank;
     }
 }
 

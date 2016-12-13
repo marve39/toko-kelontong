@@ -1,6 +1,7 @@
 <?php
 
 namespace com\adytta\tokokelontong\domain;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
 * @Entity 
@@ -16,6 +17,15 @@ class Product {
   protected $price;
   /** @Column(type="integer") */
   protected $stock;
+  /** @OneToMany(targetEntity="CheckoutCart", mappedBy="product") */
+  protected $cart;
+
+  public function __construct($name,$price,$stock) {
+        $this->cart = new ArrayCollection();
+        $this->name = $name;
+        $this->price = $price;
+        $this->stock = $stock;
+  }
 
   public function getId(){
     return $this->id;
@@ -23,10 +33,6 @@ class Product {
 
   public function getName(){
     return $this->name;
-  }
-
-  public function setName($name){
-    $this->name = $name;
   }
 
   public function getPrice(){
@@ -41,9 +47,6 @@ class Product {
     return $this->stock;
   }
 
-  public function setStock($stock){
-    $this->stock = $stock;
-  }
 }
 
 ?>
