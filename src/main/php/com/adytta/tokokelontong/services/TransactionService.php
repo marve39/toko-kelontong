@@ -31,6 +31,10 @@ class TransactionService{
         }*/
     }
 
+    public function createSalesOrder($customer){
+        return new SalesOrder($customer);
+    }
+
     public function addCart($product,$qty){
         $this->salesOrder->addCart(new CheckoutCart($product,$qty));
         return $this->salesOrder;
@@ -38,6 +42,11 @@ class TransactionService{
 
     public function doPayment($payment){
         if (!empty($this->salesOrder)){
+            $customer = $this->em->getRepository('com\adytta\tokokelontong\domain\Customer')
+                                    ->findOneBy(array('name' => $this->salesOrder->getCustomer()->getName() , 'email' => $this->salesOrder->getCustomer()->getEmail()));
+            if (!empty($customer)){
+                $this->salesOrder->setCustomer($customer);
+            }
             $this->salesOrder->doPayment($payment);
             $this->em->persist($this->salesOrder);
             $this->em->flush();

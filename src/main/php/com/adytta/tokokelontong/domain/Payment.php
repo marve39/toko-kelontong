@@ -17,6 +17,8 @@ class Payment{
     protected $billAmount;
     /** @Column(type="string") */
     protected $bank;
+    /** @Column(type="integer", nullable=true) */
+    protected $transactionNumber;
 
     public function __construct($billAmount) {
         $this->cart = new ArrayCollection();
@@ -45,6 +47,14 @@ class Payment{
 
     public function setBank($bank){
         $this->bank = $bank;
+    }
+
+    public function setTransactionNumber($transactionNumber){
+         $this->transactionNumber = $transactionNumber;
+    }
+
+    public function getTransactionNumber(){
+        return $this->transactionNumber;
     }
 }
 

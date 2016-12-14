@@ -33,4 +33,6 @@ function clearSession($key){
     }
 }
 
+$ROOT_WEB = "/toko-kelontong/";
+
 ?>
