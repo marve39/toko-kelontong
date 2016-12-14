@@ -18,3 +18,19 @@ $entityManager = \Doctrine\ORM\EntityManager::create($conn, $config);
 $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($entityManager);
 $classes = $entityManager->getMetadataFactory()->getAllMetadata();
 //$schemaTool->updateSchema($classes);
+
+function getSessionValue($key){
+    if (isset($_SESSION[$key])){
+        return $_SESSION[$key];
+    }else{
+        return null;
+    }
+}
+
+function clearSession($key){
+    if (isset($_SESSION[$key])){
+        $_SESSION[$key] = null;
+    }
+}
+
+?>

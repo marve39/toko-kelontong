@@ -24,8 +24,10 @@ class Customer {
   */
   protected $salesOrder;
 
-  public function __construct() {
+  public function __construct($name,$email) {
         $this->salesOrder = new ArrayCollection();
+        $this->name = $name;
+        $this->email = $email;
   }
 
   public function getId(){
@@ -36,10 +38,6 @@ class Customer {
     return $this->name;
   }
 
-  public function setName($name){
-    $this->name = $name;
-  }
-
   public function getSalesOrder(){
     return $this->salesOrder;
   }
@@ -48,9 +46,6 @@ class Customer {
     return $this->email;
   }
 
-  public function setEmail($email){
-    $this->email = $email;
-  }
 }
 
 ?>

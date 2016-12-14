@@ -5,7 +5,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
 * @Entity 
-* @Table (name = "products", uniqueConstraints={@UniqueConstraint(name="search_idx_product", columns={"name"})}) 
+* @Table (name = "products") 
 */
 class Product {
 

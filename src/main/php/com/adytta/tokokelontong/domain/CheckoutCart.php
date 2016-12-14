@@ -12,7 +12,7 @@ class CheckoutCart {
   /** @Id @Column(type="integer") @GeneratedValue */
   protected $id;
   
-  /** @ManyToOne(targetEntity="Product") 
+  /** @ManyToOne(targetEntity="Product", inversedBy="cart", cascade={"persist"}, fetch="EXTRA_LAZY") 
   *   @JoinColumn(name="product_id", referencedColumnName="id", unique=false)
   */
   protected $product;
@@ -61,6 +61,10 @@ class CheckoutCart {
 
   public function getTotalPrice(){
     return $this->totalPrice;
+  }
+
+  public function setProduct($product){
+    $this->product = $product;
   }
 
 }

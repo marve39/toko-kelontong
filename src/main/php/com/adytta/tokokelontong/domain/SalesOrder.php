@@ -23,10 +23,12 @@ class SalesOrder {
   *   @JoinColumn(name="cart_id", referencedColumnName="id", nullable=false)
   */
   protected $cart;
-  /** @ManyToOne(targetEntity="Customer", inversedBy="salesOrders", cascade={"persist"}, fetch="EXTRA_LAZY") 
+
+  /** @ManyToOne(targetEntity="Customer", inversedBy="salesOrders", fetch="EXTRA_LAZY") 
   *   @JoinColumn(name="customer_id", referencedColumnName="id", nullable=false)
   */
   protected $customer;
+
   /** @OneToOne(targetEntity="Payment", inversedBy="salesOrder",cascade={"persist"}, fetch="EXTRA_LAZY") 
   *   @JoinColumn(name="payment_id", referencedColumnName="id", nullable=false)
   */
@@ -53,6 +55,10 @@ class SalesOrder {
 
   public function getCustomer(){
     return $this->customer;
+  }
+
+  public function setCustomer($customer){
+    $this->customer = $customer;
   }
 
   public function getPayment(){
