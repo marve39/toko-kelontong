@@ -20,7 +20,6 @@ class SalesOrder {
   protected $date;
 
   /** @OneToMany(targetEntity="CheckoutCart", mappedBy="salesOrder", cascade={"persist"}, fetch="EXTRA_LAZY") 
-  *   @JoinColumn(name="cart_id", referencedColumnName="id", nullable=false)
   */
   protected $cart;
 

@@ -1,7 +1,7 @@
 <?php
 require_once ("../bootstrap.php");
 use com\adytta\tokokelontong\services\TransactionService as TransactionService;
-use com\adytta\tokokelontong\services\ProductService as ProductService;
+use com\adytta\tokokelontong\services\InventoryService as InventoryService;
 use com\adytta\tokokelontong\common\ErrorClass as ErrorClass;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -16,9 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     
     if (!empty($product_id) && !empty($return_url) && !empty($salesOrder) && !empty($form_id)){
         $transactionService = new TransactionService($entityManager,$salesOrder);
-        $productService = new ProductService($entityManager);
+        $inventoryService = new InventoryService($entityManager);
 
-        $product = $productService->getProduct($product_id);
+        $product = $inventoryService->getProduct($product_id);
         if (!empty($product)){
             $_SESSION['sales_order'] = $transactionService->addCart($product,1);
         }else{

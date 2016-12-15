@@ -2,13 +2,21 @@
 use Doctrine\ORM\Tools\Setup;
 require_once "src/main/resources/vendor/autoload.php";
 
-$isDevMode = false;
+$isDevMode = true;
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src/main/php"), $isDevMode);
 
 // Konfigurasi Database
-$conn = array(
+/*$conn = array(
     'driver' => 'pdo_sqlite',
     'path' => __DIR__ . '/db.sqlite',
+);*/
+
+$conn = array(
+    'dbname' => 'toko-kelontong',
+    'user' => 'root',
+    'password' => '',
+    'host' => 'localhost',
+    'driver' => 'pdo_mysql',
 );
 
 // Persiapan session Entity Manager database

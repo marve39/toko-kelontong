@@ -12,7 +12,7 @@ class CheckoutCart {
   /** @Id @Column(type="integer") @GeneratedValue */
   protected $id;
   
-  /** @ManyToOne(targetEntity="Product", inversedBy="cart", cascade={"persist"}, fetch="EXTRA_LAZY") 
+  /** @ManyToOne(targetEntity="Product", inversedBy="cart", fetch="EXTRA_LAZY") 
   *   @JoinColumn(name="product_id", referencedColumnName="id", unique=false)
   */
   protected $product;
@@ -24,7 +24,9 @@ class CheckoutCart {
   /** @Column(type="bigint") */
   protected $totalPrice;  
 
-  /** @ManyToOne(targetEntity="SalesOrder", inversedBy="cart", fetch="EXTRA_LAZY") */
+  /** @ManyToOne(targetEntity="SalesOrder", inversedBy="cart", fetch="EXTRA_LAZY") 
+  *   @JoinColumn(name="salesOrder_id", referencedColumnName="id", nullable=false)
+  */
   protected $salesOrder;
 
   public function __construct($product,$qty) {
@@ -41,6 +43,10 @@ class CheckoutCart {
 
   public function getProduct(){
     return $this->product;
+  }
+
+  public function setSalesOrder($salesOrder){
+    $this->salesOrder = $salesOrder;
   }
 
   public function getSalesOrder(){

@@ -8,13 +8,15 @@
     use com\adytta\tokokelontong\domain\Payment as Payment;
 
     
-    $customer = new Customer("Adytta","adytta@email.me");
-    $product = new Product("product1",10000,10);
-    $cart = new CheckoutCart($product,5);
+ //   $customer = new Customer("Adytta","adytta@email.me");
+    $product = new Product("Aqua",10000,10);
+$entityManager->persist($product);
+$entityManager->flush();
+  //  $cart = new CheckoutCart($product,5);
 
-    session_start();
+   /* session_start();
     $_SESSION['cart'] = $cart;
     $_SESSION['customer'] = $customer;
-
+*/
     echo "Already Submit";
 ?>

@@ -4,7 +4,7 @@ namespace com\adytta\tokokelontong\domain;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
-* @Entity (repositoryClass="com\adytta\tokokelontong\repositories\CustomerRepository")
+* @Entity
 * @Table (name = "customer", 
 *         uniqueConstraints={@UniqueConstraint(name="search_idx_customer", columns={"name", "email"})}) 
 */

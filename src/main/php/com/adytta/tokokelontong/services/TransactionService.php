@@ -40,16 +40,36 @@ class TransactionService{
         return $this->salesOrder;
     }
 
+    public function getCarts($product_id){
+        return $this->em->getRepository('com\adytta\tokokelontong\domain\CheckoutCart')
+                                ->findBy(array('product' => $product_id));
+    }
+
     public function doPayment($payment){
         if (!empty($this->salesOrder)){
-            $customer = $this->em->getRepository('com\adytta\tokokelontong\domain\Customer')
+           /* $customer = $this->em->getRepository('com\adytta\tokokelontong\domain\Customer')
                                     ->findOneBy(array('name' => $this->salesOrder->getCustomer()->getName() , 'email' => $this->salesOrder->getCustomer()->getEmail()));
+           
             if (!empty($customer)){
                 $this->salesOrder->setCustomer($customer);
+            }*/
+            $this->salesOrder->setCustomer($this->em->merge($this->salesOrder->getCustomer()));
+            foreach($this->salesOrder->getCart() as $cart){
+                $product = $cart->getProduct();
+                $product->reduceStock($cart->getQty());
+                $product = $this->em->merge($product);
+                $cart->setProduct($product);
             }
             $this->salesOrder->doPayment($payment);
             $this->em->persist($this->salesOrder);
+            
+
+            foreach($this->salesOrder->getCart() as $cart){
+                $cart->setSalesOrder($this->salesOrder);
+                $this->em->merge($cart);
+            }
             $this->em->flush();
+           
             return $this->salesOrder;
         }
     }
