@@ -12,6 +12,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $form_id = $_POST["form_id"];
     $return_url = $_POST["return_url"];
 
+    $cancel = false;
+    if (isset($_POST["cancel"])){
+        $cancel = true;
+    }
+
+    if ($cancel){
+        clearSession('customer');
+        clearSession('sales_order');
+        header("Location: $return_url");
+    }
+
     if (!empty($payment_bank) && !empty($payment_number) && !empty($form_id) && !empty($return_url)){
         $transactionService = new TransactionService($entityManager,$salesOrder);
         $payment = $salesOrder->getDue();

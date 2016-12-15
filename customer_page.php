@@ -9,6 +9,7 @@ $THIS_PAGE = "customer_page.php";
 session_start();
 $error = getSessionValue('error');
 clearSession('error');
+clearSession('customer');
 $customer_sales_order = getSessionValue('customer_sales_order');
 clearSession('customer_sales_order');
 

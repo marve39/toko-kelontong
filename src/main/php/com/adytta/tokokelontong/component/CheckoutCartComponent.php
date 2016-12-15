@@ -4,29 +4,31 @@ use com\adytta\tokokelontong\domain\SalesOrder as SalesOrder;
 
 class CheckoutCartComponent{
     public function drawSummary($div_id, SalesOrder $salesOrder){
-        echo "<div id='$div_id'>\n";
-        echo "<table>\n";
-        echo " <tr>\n";
-        echo "   <th>Product</th>\n";
-        echo "   <th>Quantity</th>\n";
-        echo "   <th>BasePrice</th>\n";
-        echo "   <th>TotalPrice</th>\n";
-        echo " </tr>\n";
+
+        $strTable = "<div id='$div_id'>\n";
+        $strTable = $strTable . "<table>\n";
+        $strTable = $strTable . " <tr>\n";
+        $strTable = $strTable . "   <th>Product</th>\n";
+        $strTable = $strTable . "   <th>Quantity</th>\n";
+        $strTable = $strTable . "   <th>BasePrice</th>\n";
+        $strTable = $strTable . "   <th>TotalPrice</th>\n";
+        $strTable = $strTable . " </tr>\n";
         
         if (!empty($salesOrder)){
            foreach($salesOrder->getCart() as $cart){
-                    echo "<tr>\n";
-                    echo "<td>" .$cart->getProduct()->getName(). "</td>\n";
-                    echo "<td>" .$cart->getQty(). "</td>\n";
-                    echo "<td>" .$cart->getBasePrice(). "</td>\n";
-                    echo "<td>" .$cart->getTotalPrice(). "</td>\n";
-                    echo "</tr>\n";
+                    $strTable = $strTable . "<tr>\n";
+                    $strTable = $strTable . "<td>" .$cart->getProduct()->getName(). "</td>\n";
+                    $strTable = $strTable . "<td>" .$cart->getQty(). "</td>\n";
+                    $strTable = $strTable . "<td>" .$cart->getBasePrice(). "</td>\n";
+                    $strTable = $strTable . "<td>" .$cart->getTotalPrice(). "</td>\n";
+                    $strTable = $strTable . "</tr>\n";
                 }
             }else{
-                echo "<tr></tr>\n";
+                $strTable = $strTable . "<tr></tr>\n";
             }
-        echo "</table>\n";
-        echo "</div>\n";
+        $strTable = $strTable . "</table>\n";
+        $strTable = $strTable . "</div>\n";
+        return $strTable;
     }
 
     public function drawInputCartForm($div_id,$postURL,$returnURL,$error){

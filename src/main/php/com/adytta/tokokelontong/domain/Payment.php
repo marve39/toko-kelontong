@@ -26,7 +26,7 @@ class Payment{
   }
 
     public function getId(){
-        return $this->Id;
+        return $this->id;
     }
 
     public function getSalesOrder(){

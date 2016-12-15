@@ -73,6 +73,11 @@ class TransactionService{
             return $this->salesOrder;
         }
     }
+
+    public function getSalesById($id){
+         return $this->em->getRepository('com\adytta\tokokelontong\domain\SalesOrder')
+                            ->findOneBy(array('id' => $id));
+    }
 }
 
 

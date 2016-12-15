@@ -57,7 +57,7 @@ class CustomerComponent{
         echo "</table>\n";
     }
 
-    public function drawNewCustomerComponent($div_id,$postURL,$returnURL,$error){
+    public function drawNewCustomerComponent($div_id,$postURL,$returnURL,$error,$is_in_transaction = false){
         echo "<div class='".$div_id."'>\n";
         echo "<form action='".$postURL."' method='post'>\n";
         echo "<table>\n";
@@ -70,6 +70,7 @@ class CustomerComponent{
         echo "<tr>\n";
         echo "  <input type='hidden' name='return_url' value='". $returnURL ."' />\n";
         echo "  <input type='hidden' name='form_id' value='".$div_id."' />\n";
+        echo "  <input type='hidden' name='is_in_transaction' value='".$is_in_transaction."' />\n";
         echo "  <input type='submit' value='submit'/>\n";
         echo "</tr>\n";
         echo "</table>\n";

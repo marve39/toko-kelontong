@@ -38,7 +38,7 @@ clearSession('error');
                 echo $paymentComponent->drawPaymentForm("payment_input",$ROOT_WEB."controller/payment_controller.php",$ROOT_WEB.$THIS_PAGE,$error);
             }
         }else{
-            echo $customerComponent->drawNewCustomerComponent("customer_input",$ROOT_WEB."controller/customer_controller.php",$ROOT_WEB.$THIS_PAGE,$error);
+            echo $customerComponent->drawNewCustomerComponent("customer_input",$ROOT_WEB."controller/customer_controller.php",$ROOT_WEB.$THIS_PAGE,$error,true);
         }
     ?>
 </body>

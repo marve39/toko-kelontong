@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $valid = true;
     }
     
-    if ($valid = false){
+    if ($valid == false){
         echo "SECURITY BREACH";
     }
 }
