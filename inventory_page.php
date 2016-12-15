@@ -13,6 +13,7 @@ $product_sales_report = getSessionValue('product_sales_report');
 $product_procurement_report = getSessionValue('product_procurement_report');
 clearSession('product_sales_report');
 clearSession('product_procurement_report');
+clearSession('error');
 ?>
 <html>
 <head>

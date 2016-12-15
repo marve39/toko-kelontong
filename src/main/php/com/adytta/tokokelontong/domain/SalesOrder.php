@@ -71,6 +71,10 @@ class SalesOrder {
   public function getDue(){
     return new Payment($this->price);
   }
+
+  public function getDateString(){
+        return $this->date->format('d-m-Y H:i:s');;
+    }
 }
 
 ?>

@@ -15,6 +15,7 @@ session_start();
 $salesOrder = getSessionValue('sales_order');
 $error = getSessionValue('error');
 $customer = getSessionValue('customer');
+clearSession('error');
 
 ?>
 <html>

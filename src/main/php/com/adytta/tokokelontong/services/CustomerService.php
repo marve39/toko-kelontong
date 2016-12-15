@@ -28,5 +28,14 @@ class CustomerService{
         }
         return $customer;
     }
+
+    public function getCustomerById($id){
+         return $this->em->getRepository('com\adytta\tokokelontong\domain\Customer')
+                            ->findOneBy(array('id' => $id));
+    }
+
+    public function listAllCustomer(){
+        return $this->em->getRepository('com\adytta\tokokelontong\domain\Customer')->findAll();
+    }
 }
 ?>
