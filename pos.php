@@ -8,7 +8,7 @@ $checkoutCartComponent = new CheckoutCartComponent();
 $customerComponent = new CustomerComponent();
 $paymentComponent = new PaymentComponent();
 
-$THIS_PAGE = "pos.php";
+$THIS_PAGE = "app-page.php?page=pos.php";
 
 session_start();
 
@@ -16,14 +16,6 @@ $salesOrder = getSessionValue('sales_order');
 $error = getSessionValue('error');
 $customer = getSessionValue('customer');
 clearSession('error');
-
-?>
-<html>
-<head>
-</head>
-<body>
-    <?php
-
         if (!empty($customer)){
             echo $customerComponent->drawCustomerInfoComponent("customer_input",$customer);
 
@@ -38,8 +30,10 @@ clearSession('error');
                 echo $paymentComponent->drawPaymentForm("payment_input",$ROOT_WEB."controller/payment_controller.php",$ROOT_WEB.$THIS_PAGE,$error);
             }
         }else{
-            echo $customerComponent->drawNewCustomerComponent("customer_input",$ROOT_WEB."controller/customer_controller.php",$ROOT_WEB.$THIS_PAGE,$error,true);
+            echo "<header><h1>Create Sales Order</h1></header>\n";
+            echo "<div class='row'>\n";
+            echo "  <div class='col-xs-12'>\n";
+            echo $customerComponent->drawNewCustomerComponent1("customer_input",$ROOT_WEB."controller/customer_controller.php",$ROOT_WEB.$THIS_PAGE,$error,true);
+            echo "</div></div>\n";
         }
     ?>
-</body>
-</html>

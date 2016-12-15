@@ -57,6 +57,29 @@ class CustomerComponent{
         echo "</table>\n";
     }
 
+public function drawNewCustomerComponent1($div_id,$postURL,$returnURL,$error,$is_in_transaction = false){
+
+    $strTable="";
+   // $strTable ="<div class='".$div_id."'>\n";
+    $strTable = $strTable . "<form class='form-inline' action='".$postURL."' method='post'>\n";
+     $strTable = $strTable . "<div class='form-group'>\n";
+    $strTable = $strTable . "<label class='sr-only for='customer_name'>Name</label>\n";
+    $strTable = $strTable . "<input type='text' name='customer_name' class='form-control' id='customer_name' placeholder='Place Customer Name'>\n";
+    $strTable = $strTable . "</div>\n";
+    $strTable = $strTable . "<div class='form-group'>\n";
+    $strTable = $strTable . "<label class='sr-only for='customer_email'>Email</label>\n";
+    $strTable = $strTable . "<input type='email' name='customer_email' class='form-control' id='customer_email' placeholder='Place customer Email'>\n";
+    $strTable = $strTable . "</div>\n";
+    $strTable = $strTable . "  <input type='hidden' name='return_url' value='". $returnURL ."' />\n";
+    $strTable = $strTable . "  <input type='hidden' name='form_id' value='".$div_id."' />\n";
+    $strTable = $strTable . "  <input type='hidden' name='is_in_transaction' value='".$is_in_transaction."' />\n";
+    $strTable = $strTable . "<button type='submit' class='btn btn-default'>Add Customer</button>\n";
+    $strTable = $strTable . "</form>\n";
+  //  $strTable = $strTable . "</div>\n";
+
+    return $strTable;
+}
+
     public function drawNewCustomerComponent($div_id,$postURL,$returnURL,$error,$is_in_transaction = false){
         echo "<div class='".$div_id."'>\n";
         echo "<form action='".$postURL."' method='post'>\n";

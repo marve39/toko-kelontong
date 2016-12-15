@@ -5,7 +5,7 @@ use com\adytta\tokokelontong\services\CustomerService as CustomerService;
 
 $customerComponent = new CustomerComponent();
 
-$THIS_PAGE = "customer_page.php";
+$THIS_PAGE = "app-page.php?page=customer_page.php";
 session_start();
 $error = getSessionValue('error');
 clearSession('error');

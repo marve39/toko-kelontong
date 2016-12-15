@@ -5,7 +5,7 @@ use com\adytta\tokokelontong\services\InventoryService as InventoryService;
 
 $inventoryComponent = new InventoryComponent();
 
-$THIS_PAGE = "inventory_page.php";
+$THIS_PAGE = "app-page.php?page=inventory_page.php";
 
 session_start();
 $error = getSessionValue('error');

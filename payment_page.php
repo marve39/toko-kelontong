@@ -5,7 +5,7 @@ use com\adytta\tokokelontong\services\PaymentService as PaymentService;
 
 $paymentComponent = new PaymentComponent();
 
-$THIS_PAGE = "payment_page.php";
+$THIS_PAGE = "app-page.php?page=payment_page.php";
 
 session_start();
 $error = getSessionValue('error');
